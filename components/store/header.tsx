@@ -15,10 +15,11 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCart, Menu, X } from 'lucide-react'
+import { ShoppingCart, Menu, Lock } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCart } from '@/hooks/use-cart'
 
 /**
@@ -78,6 +79,27 @@ export function Header() {
             </Button>
           </Link>
 
+          {/* Botão Administrador (Desktop) - Visível somente em telas md+ */}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="/admin/login" className="hidden md:inline-flex">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    <Lock className="h-4 w-4" />
+                    <span className="sr-only">Área do Administrador</span>
+                  </Button>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p>Área do Administrador</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           {/* Menu Mobile */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
@@ -106,6 +128,19 @@ export function Header() {
                 >
                   <ShoppingCart className="h-5 w-5" />
                   Carrinho {totalItems > 0 && `(${totalItems})`}
+                </Link>
+
+                {/* Separador visual */}
+                <div className="my-2 border-t border-border" />
+
+                {/* Link Administrador no menu mobile */}
+                <Link
+                  href="/admin/login"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"
+                >
+                  <Lock className="h-4 w-4" />
+                  Área do Administrador
                 </Link>
               </nav>
             </SheetContent>
