@@ -47,48 +47,29 @@ export function SetupForm() {
       return
     }
 
-    const supabase = createClient()
-
     try {
-      // 1. Cria o usuário no Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            name: name.trim(),
-          },
-        },
+      // Usa a API Route com Service Role para criar o usuário
+      const response = await fetch('/api/setup-admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+          name: name.trim(),
+        }),
       })
 
-      if (authError) {
-        setError(authError.message)
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || 'Erro ao criar administrador.')
         return
       }
 
-      if (!authData.user) {
-        setError('Erro ao criar usuário.')
-        return
-      }
-
-      // 2. Cria o perfil na tabela profiles
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-          id: authData.user.id,
-          name: name.trim(),
-          email: email.trim(),
-          active: true,
-        })
-
-      if (profileError) {
-        console.error('Erro ao criar perfil:', profileError)
-      }
-
-      // Sucesso!
+      // Sucesso! Faz login automático
       setSuccess(true)
       
-      // Faz login automático
+      const supabase = createClient()
       await supabase.auth.signInWithPassword({ email, password })
       
       // Redireciona para o admin
