@@ -29,6 +29,12 @@ interface ProductPageProps {
 async function getProduct(id: string): Promise<Product | null> {
   const supabase = await createClient()
   
+  // Se o Supabase não está configurado, retorna null
+  if (!supabase) {
+    console.warn('[Produto] Supabase não configurado')
+    return null
+  }
+  
   const { data: product, error } = await supabase
     .from('products')
     .select('*')
@@ -49,6 +55,11 @@ async function getProduct(id: string): Promise<Product | null> {
  */
 async function getProductImages(productId: string): Promise<ProductImage[]> {
   const supabase = await createClient()
+  
+  // Se o Supabase não está configurado, retorna array vazio
+  if (!supabase) {
+    return []
+  }
   
   const { data: images, error } = await supabase
     .from('product_images')

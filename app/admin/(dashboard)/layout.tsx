@@ -32,6 +32,12 @@ interface AdminLayoutProps {
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   // Verifica se o usuário está autenticado
   const supabase = await createClient()
+  
+  // Se o Supabase não está configurado, redireciona para login
+  if (!supabase) {
+    redirect('/admin/login')
+  }
+  
   const { data: { user } } = await supabase.auth.getUser()
 
   // Se não está logado, redireciona para login

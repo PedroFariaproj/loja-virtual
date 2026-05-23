@@ -23,6 +23,11 @@ export const metadata: Metadata = {
 async function getProducts(): Promise<Product[]> {
   const supabase = await createClient()
   
+  // Se o Supabase não está configurado, retorna array vazio
+  if (!supabase) {
+    return []
+  }
+  
   const { data: products, error } = await supabase
     .from('products')
     .select('*')
