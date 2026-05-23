@@ -40,21 +40,21 @@ export function HeroSection() {
           {/* Botões de Ação */}
           <div className="animate-fade-in mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center [animation-delay:400ms]">
             {/* Botão Principal - Ver Produtos */}
-            <Link href="/produtos">
-              <Button size="lg" className="gap-2 text-lg hover-glow w-full sm:w-auto">
+            <Button asChild size="lg" className="gap-2 text-lg hover-glow w-full sm:w-auto">
+              <Link href="/produtos">
                 {storeConfig.hero.buttonText}
                 <ArrowRight className="h-5 w-5" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             
             {/* Botão Secundário - WhatsApp (se configurado) */}
             {whatsappLink && (
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="gap-2 text-lg w-full sm:w-auto">
+              <Button asChild size="lg" variant="outline" className="gap-2 text-lg w-full sm:w-auto">
+                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-5 w-5" />
                   {storeConfig.hero.secondaryButtonText}
-                </Button>
-              </a>
+                </a>
+              </Button>
             )}
           </div>
         </div>
