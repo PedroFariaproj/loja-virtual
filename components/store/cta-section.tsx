@@ -4,6 +4,7 @@
  * =============================================================================
  * 
  * Seção de destaque para direcionar o cliente para os produtos.
+ * Visual clean estilo Apple - fundo sutil, tipografia elegante
  * Configuração vem do arquivo lib/store-config.ts
  * =============================================================================
  */
@@ -14,30 +15,29 @@ import { Button } from '@/components/ui/button'
 import { storeConfig } from '@/lib/store-config'
 
 export function CtaSection() {
-  // Não renderiza se a seção estiver desabilitada
   if (!storeConfig.cta.show) return null
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-card/50 to-background">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-32 bg-secondary/30">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           {/* Título */}
-          <h2 className="text-2xl font-bold md:text-4xl mb-4 text-balance">
+          <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl mb-5 text-foreground text-balance">
             {storeConfig.cta.title}
           </h2>
 
           {/* Descrição */}
-          <p className="text-muted-foreground text-lg mb-8 text-pretty">
+          <p className="text-foreground/60 text-lg md:text-xl mb-10 text-pretty leading-relaxed">
             {storeConfig.cta.description}
           </p>
 
           {/* Botão */}
-          <Link href="/produtos">
-            <Button size="lg" className="gap-2 text-lg hover-glow">
+          <Button asChild size="lg" className="gap-2 text-base font-medium h-12 px-8 rounded-full hover-glow">
+            <Link href="/produtos">
               {storeConfig.cta.buttonText}
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-          </Link>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

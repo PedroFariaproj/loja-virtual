@@ -52,17 +52,17 @@ export default async function ProductsPage() {
   const products = await getProducts()
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header />
 
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16">
           {/* Cabeçalho da Página */}
-          <div className="mb-8 text-center md:text-left">
-            <h1 className="text-3xl font-bold md:text-4xl">
+          <div className="mb-12 text-center">
+            <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl text-foreground">
               {storeConfig.products.title}
             </h1>
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-4 text-lg text-foreground/60 max-w-xl mx-auto">
               {storeConfig.products.subtitle}
             </p>
           </div>

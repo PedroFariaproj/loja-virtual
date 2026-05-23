@@ -4,6 +4,7 @@
  * =============================================================================
  * 
  * Seção de destaque no topo da página inicial.
+ * Visual clean inspirado na Apple - muito espaço em branco
  * Textos vêm do arquivo lib/store-config.ts
  * =============================================================================
  */
@@ -20,38 +21,35 @@ export function HeroSection() {
     : null
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-background to-card/50 py-20 md:py-32">
-      {/* Efeito de gradiente decorativo */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-      
-      <div className="container relative mx-auto px-4">
-        <div className="mx-auto max-w-3xl text-center">
+    <section className="relative py-24 md:py-40 lg:py-48">
+      <div className="container relative mx-auto px-4 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
           {/* Título Principal - textos do store-config.ts */}
-          <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl text-balance">
+          <h1 className="animate-fade-in text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl text-balance leading-[1.1]">
             {storeConfig.hero.titleStart}{' '}
             <span className="text-primary">{storeConfig.hero.titleHighlight}</span>
           </h1>
 
           {/* Subtítulo */}
-          <p className="animate-fade-in mt-6 text-lg text-muted-foreground md:text-xl [animation-delay:200ms] text-pretty">
+          <p className="animate-fade-in mt-6 text-lg text-foreground/60 md:text-xl lg:text-2xl [animation-delay:200ms] text-pretty max-w-2xl mx-auto leading-relaxed">
             {storeConfig.hero.subtitle}
           </p>
 
           {/* Botões de Ação */}
-          <div className="animate-fade-in mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center [animation-delay:400ms]">
+          <div className="animate-fade-in mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center [animation-delay:400ms]">
             {/* Botão Principal - Ver Produtos */}
-            <Button asChild size="lg" className="gap-2 text-lg hover-glow w-full sm:w-auto">
+            <Button asChild size="lg" className="gap-2 text-base font-medium h-12 px-8 rounded-full hover-glow">
               <Link href="/produtos">
                 {storeConfig.hero.buttonText}
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             
             {/* Botão Secundário - WhatsApp (se configurado) */}
             {whatsappLink && (
-              <Button asChild size="lg" variant="outline" className="gap-2 text-lg w-full sm:w-auto">
+              <Button asChild size="lg" variant="outline" className="gap-2 text-base font-medium h-12 px-8 rounded-full border-foreground/20 hover:bg-foreground/5">
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="h-5 w-5" />
+                  <MessageCircle className="h-4 w-4" />
                   {storeConfig.hero.secondaryButtonText}
                 </a>
               </Button>
@@ -59,9 +57,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Decoração de fundo */}
-      <div className="absolute -bottom-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
     </section>
   )
 }

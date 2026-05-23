@@ -1,22 +1,11 @@
 /**
  * =============================================================================
- * ESTILOS GLOBAIS - TEMA PREMIUM APPLE
+ * ESTILOS GLOBAIS - TEMA CLEAN APPLE
  * =============================================================================
  * 
- * Este arquivo define o tema visual da loja inspirado na Apple.
- * Cores principais: Preto, Cinza Escuro, Branco, Azul Apple (#0071E3)
- * 
- * COMO ALTERAR AS CORES:
- * 1. Encontre a seção :root (tema claro) ou .dark (tema escuro)
- * 2. Altere os valores das variáveis CSS
- * 3. As cores usam o formato OKLCH para melhor fidelidade
- * 
- * CONVERSÃO HEX PARA OKLCH:
- * #0071E3 (Azul Apple) = oklch(0.55 0.22 250)
- * #000000 (Preto) = oklch(0 0 0)
- * #111111 (Cinza escuro) = oklch(0.145 0 0)
- * #1f1f1f (Cinza médio) = oklch(0.2 0 0)
- * #ffffff (Branco) = oklch(1 0 0)
+ * Visual minimalista inspirado na Apple Store
+ * Fundo claro, tipografia elegante, muito espaço em branco
+ * Destaque sutil em azul Apple (#0071E3)
  * =============================================================================
  */
 
@@ -26,98 +15,108 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   TEMA ESCURO (PADRÃO) - Inspirado na Apple
-   O site usa tema escuro como padrão para visual premium
+   TEMA CLARO (PADRÃO) - Apple Style
+   Fundo branco/off-white, texto preto, acentos sutis
    ============================================================================= */
 :root {
-  /* Fundo principal - Preto puro (#000000) */
-  --background: oklch(0 0 0);
-  /* Texto principal - Branco (#ffffff) */
-  --foreground: oklch(0.985 0 0);
+  /* Fundo principal - Branco puro */
+  --background: oklch(0.995 0 0);
+  /* Texto principal - Preto suave */
+  --foreground: oklch(0.13 0 0);
   
-  /* Cards - Cinza escuro (#111111) */
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  /* Cards - Branco com leve sombra */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.13 0 0);
   
-  /* Popovers - Cinza escuro */
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  /* Popovers */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.13 0 0);
   
   /* Cor primária - Azul Apple (#0071E3) */
-  --primary: oklch(0.55 0.22 250);
+  --primary: oklch(0.55 0.2 250);
   --primary-foreground: oklch(1 0 0);
   
-  /* Cor secundária - Cinza médio (#1f1f1f) */
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  /* Cor secundária - Cinza muito claro */
+  --secondary: oklch(0.965 0.001 286);
+  --secondary-foreground: oklch(0.2 0 0);
   
-  /* Elementos mutados - Cinza médio */
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.65 0 0);
+  /* Elementos mutados - Cinza suave */
+  --muted: oklch(0.965 0.001 286);
+  --muted-foreground: oklch(0.45 0 0);
   
-  /* Acentos - Cinza escuro */
-  --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Acentos */
+  --accent: oklch(0.965 0.001 286);
+  --accent-foreground: oklch(0.2 0 0);
   
-  /* Destrutivo - Vermelho */
-  --destructive: oklch(0.577 0.245 27.325);
+  /* Destrutivo - Vermelho Apple */
+  --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(1 0 0);
   
-  /* Bordas e inputs - Cinza escuro */
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.2 0 0);
-  --ring: oklch(0.55 0.22 250);
+  /* Bordas e inputs - Cinza muito sutil */
+  --border: oklch(0.91 0.002 286);
+  --input: oklch(0.91 0.002 286);
+  --ring: oklch(0.55 0.2 250);
   
   /* Gráficos */
-  --chart-1: oklch(0.55 0.22 250);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.55 0.2 250);
+  --chart-2: oklch(0.6 0.15 180);
+  --chart-3: oklch(0.5 0.12 280);
+  --chart-4: oklch(0.75 0.15 85);
+  --chart-5: oklch(0.65 0.18 35);
   
-  /* Raio de borda padrão */
-  --radius: 0.75rem;
+  /* Raio de borda - Arredondamento Apple */
+  --radius: 0.875rem;
   
-  /* Sidebar - Cinza escuro */
-  --sidebar: oklch(0.1 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.22 250);
+  /* Sidebar - Cinza claro elegante */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.13 0 0);
+  --sidebar-primary: oklch(0.55 0.2 250);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.55 0.22 250);
+  --sidebar-accent: oklch(0.965 0.001 286);
+  --sidebar-accent-foreground: oklch(0.2 0 0);
+  --sidebar-border: oklch(0.91 0.002 286);
+  --sidebar-ring: oklch(0.55 0.2 250);
 }
 
-/* Tema claro (opcional, caso queira adicionar toggle de tema) */
-.light {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 250);
+/* =============================================================================
+   TEMA ESCURO (Admin Dashboard)
+   ============================================================================= */
+.dark {
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.12 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.12 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.58 0.2 250);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.18 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.55 0.22 250);
+  --border: oklch(0.22 0 0);
+  --input: oklch(0.18 0 0);
+  --ring: oklch(0.58 0.2 250);
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.58 0.2 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.18 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.22 0 0);
+  --sidebar-ring: oklch(0.58 0.2 250);
 }
 
 /* =============================================================================
    CONFIGURAÇÃO DO TAILWIND
    ============================================================================= */
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --font-sans: 'Geist', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -161,30 +160,42 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 }
 
 /* =============================================================================
-   ANIMAÇÕES PERSONALIZADAS
+   ANIMAÇÕES SUAVES - Apple Style
    ============================================================================= */
 @layer utilities {
-  /* Animação de fade in suave */
+  /* Fade in elegante */
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
   }
   
-  /* Animação de slide up */
+  /* Slide up suave */
   .animate-slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+    animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
   }
   
-  /* Efeito de brilho em hover */
+  /* Efeito de brilho sutil em hover */
   .hover-glow {
-    transition: box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 113, 227, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 113, 227, 0.25);
+    transform: translateY(-1px);
+  }
+
+  /* Transição suave para cards */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card-hover:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
   }
 }
 
@@ -200,7 +211,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -209,7 +220,7 @@
 }
 
 /* =============================================================================
-   ESTILOS DE SCROLLBAR PERSONALIZADOS
+   SCROLLBAR ELEGANTE
    ============================================================================= */
 ::-webkit-scrollbar {
   width: 8px;
@@ -217,14 +228,58 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: oklch(0.1 0 0);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.3 0 0);
+  background: oklch(0.8 0 0);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.65 0 0);
+}
+
+/* Dark mode scrollbar */
+.dark::-webkit-scrollbar-track {
+  background: oklch(0.1 0 0);
+}
+
+.dark::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0 0);
+}
+
+.dark::-webkit-scrollbar-thumb:hover {
   background: oklch(0.4 0 0);
+}
+
+/* =============================================================================
+   ESTILOS APPLE - Detalhes extras
+   ============================================================================= */
+
+/* Seleção de texto com cor Apple */
+::selection {
+  background: oklch(0.55 0.2 250 / 0.2);
+  color: inherit;
+}
+
+/* Links com transição suave */
+a {
+  transition: color 0.2s ease;
+}
+
+/* Imagens com loading suave */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Focus ring estilo Apple */
+:focus-visible {
+  outline: 2px solid oklch(0.55 0.2 250);
+  outline-offset: 2px;
+}
+
+/* Botões com transições suaves */
+button {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

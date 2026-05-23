@@ -124,18 +124,18 @@ export function ProductsGrid({ products }: ProductsGridProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Barra de Busca */}
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/40" />
           <Input
             type="text"
             placeholder={storeConfig.products.searchPlaceholder}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 pr-10"
+            className="pl-11 pr-10 h-11 rounded-full border-foreground/10 bg-secondary/50 placeholder:text-foreground/40 focus-visible:ring-primary"
           />
           {search && (
             <button
               onClick={() => setSearch('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground"
             >
               <X className="h-4 w-4" />
             </button>
@@ -250,7 +250,7 @@ export function ProductsGrid({ products }: ProductsGridProps) {
       </div>
 
       {/* Contador de Resultados */}
-      <div className="text-sm text-muted-foreground">
+      <div className="text-sm text-foreground/50">
         {filteredProducts.length === 0 ? (
           'Nenhum produto encontrado'
         ) : filteredProducts.length === 1 ? (
@@ -263,11 +263,11 @@ export function ProductsGrid({ products }: ProductsGridProps) {
 
       {/* Grid de Produtos ou Estado Vazio */}
       {filteredProducts.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredProducts.map((product, index) => (
             <div
               key={product.id}
-              className="animate-slide-up"
+              className="animate-fade-in"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               <ProductCard product={product} />
@@ -275,18 +275,18 @@ export function ProductsGrid({ products }: ProductsGridProps) {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border/60 bg-card/30 py-20">
-          <Package className="h-16 w-16 text-muted-foreground/50" />
-          <h2 className="mt-6 text-xl font-medium">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-secondary/30 py-24">
+          <Package className="h-12 w-12 text-foreground/20" strokeWidth={1.5} />
+          <h2 className="mt-6 text-lg font-medium text-foreground">
             {storeConfig.products.noResultsText}
           </h2>
-          <p className="mt-2 text-center text-muted-foreground">
+          <p className="mt-2 text-center text-foreground/50">
             {hasActiveFilters ? (
               <>
                 Tente ajustar os filtros ou{' '}
                 <button
                   onClick={clearFilters}
-                  className="text-primary underline hover:no-underline"
+                  className="text-primary hover:underline"
                 >
                   limpar busca
                 </button>

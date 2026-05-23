@@ -33,22 +33,22 @@ export function Header() {
   const totalItems = getTotalItems()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
+      <div className="container mx-auto flex h-14 items-center justify-between px-4 lg:px-8">
         {/* Logo - Nome vem do store-config.ts */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight">
+        <Link href="/" className="flex items-center gap-2 group">
+          <span className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
             {storeConfig.storeName}
           </span>
         </Link>
 
         {/* Navegação Desktop */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
