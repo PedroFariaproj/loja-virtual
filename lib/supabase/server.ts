@@ -16,9 +16,7 @@
  * 
  * EXEMPLO DE USO:
  * const supabase = await createClient()
- * if (supabase) {
- *   const { data } = await supabase.from('products').select('*')
- * }
+ * const { data } = await supabase.from('products').select('*')
  * =============================================================================
  */
 
@@ -26,28 +24,12 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
 /**
- * Verifica se as variáveis de ambiente do Supabase estão configuradas
- */
-export function isSupabaseConfigured(): boolean {
-  return !!(
-    process.env.NEXT_PUBLIC_SUPABASE_URL && 
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  )
-}
-
-/**
  * Cria uma instância do Supabase client para uso no servidor.
  * Esta função é assíncrona pois precisa acessar os cookies.
  * 
- * @returns Promise com a instância do Supabase client configurada ou null se não configurado
+ * @returns Promise com a instância do Supabase client configurada
  */
 export async function createClient() {
-  // Verifica se as variáveis de ambiente estão configuradas
-  if (!isSupabaseConfigured()) {
-    console.warn('[Supabase Server] Variáveis de ambiente não configuradas.')
-    return null
-  }
-
   // Obtém o store de cookies (assíncrono no Next.js 15)
   const cookieStore = await cookies()
 

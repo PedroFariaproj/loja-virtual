@@ -60,12 +60,6 @@ export function AdminsList({ initialAdmins, currentUserId }: AdminsListProps) {
     setIsLoading(admin.id)
     const supabase = createClient()
 
-    if (!supabase) {
-      alert('Sistema não configurado.')
-      setIsLoading(null)
-      return
-    }
-
     const { error } = await supabase
       .from('profiles')
       .update({ active: !admin.active })
@@ -98,13 +92,6 @@ export function AdminsList({ initialAdmins, currentUserId }: AdminsListProps) {
     setIsLoading(deleteAdmin.id)
     const supabase = createClient()
 
-    if (!supabase) {
-      alert('Sistema não configurado.')
-      setIsLoading(null)
-      setDeleteAdmin(null)
-      return
-    }
-
     // Remove o perfil (o usuário auth será mantido mas sem acesso)
     const { error } = await supabase
       .from('profiles')
@@ -131,7 +118,6 @@ export function AdminsList({ initialAdmins, currentUserId }: AdminsListProps) {
     // Recarrega os admins
     const fetchAdmins = async () => {
       const supabase = createClient()
-      if (!supabase) return
       const { data } = await supabase
         .from('profiles')
         .select('*')

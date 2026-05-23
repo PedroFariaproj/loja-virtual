@@ -142,13 +142,6 @@ export function ProductFormDialog({
     setIsLoading(true)
     const supabase = createClient()
     
-    // Verifica se o Supabase está configurado
-    if (!supabase) {
-      alert('Sistema não configurado. Entre em contato com o administrador.')
-      setIsLoading(false)
-      return
-    }
-    
     try {
       let imageUrl = product?.main_image || null
 

@@ -67,12 +67,6 @@ export function ProductsList({ initialProducts }: ProductsListProps) {
     setIsLoading(product.id)
     const supabase = createClient()
 
-    if (!supabase) {
-      alert('Sistema não configurado.')
-      setIsLoading(null)
-      return
-    }
-
     const { error } = await supabase
       .from('products')
       .update({ active: !product.active })
@@ -98,13 +92,6 @@ export function ProductsList({ initialProducts }: ProductsListProps) {
 
     setIsLoading(deleteProduct.id)
     const supabase = createClient()
-
-    if (!supabase) {
-      alert('Sistema não configurado.')
-      setIsLoading(null)
-      setDeleteProduct(null)
-      return
-    }
 
     // Primeiro exclui as imagens do Storage
     if (deleteProduct.main_image) {
@@ -140,7 +127,6 @@ export function ProductsList({ initialProducts }: ProductsListProps) {
     // Recarrega os produtos
     const fetchProducts = async () => {
       const supabase = createClient()
-      if (!supabase) return
       const { data } = await supabase
         .from('products')
         .select('*')
