@@ -18,7 +18,7 @@ export function CtaSection() {
   if (!storeConfig.cta.show) return null
 
   return (
-    <section className="py-20 md:py-32 bg-secondary/30">
+    <section className="py-20 md:py-32 bg-card/50 border-y border-border/40">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           {/* Título */}
@@ -27,7 +27,7 @@ export function CtaSection() {
           </h2>
 
           {/* Descrição */}
-          <p className="text-foreground/60 text-lg md:text-xl mb-10 text-pretty leading-relaxed">
+          <p className="text-muted-foreground text-lg md:text-xl mb-10 text-pretty leading-relaxed">
             {storeConfig.cta.description}
           </p>
 

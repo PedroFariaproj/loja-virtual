@@ -33,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <div className="group">
       {/* Imagem do Produto - Link para página de detalhes */}
       <Link href={`/produtos/${product.id}`} className="block">
-        <div className="relative aspect-square overflow-hidden rounded-2xl bg-secondary/50 mb-4">
+        <div className="relative aspect-square overflow-hidden rounded-2xl bg-card border border-border/50 mb-4 card-hover">
           {product.main_image ? (
             <Image
               src={product.main_image}
@@ -43,22 +43,22 @@ export function ProductCard({ product }: ProductCardProps) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
           ) : (
-            <div className="flex h-full items-center justify-center">
+            <div className="flex h-full items-center justify-center bg-secondary">
               <span className="text-5xl opacity-30">📱</span>
             </div>
           )}
           
           {/* Badge de estoque baixo */}
           {product.stock > 0 && product.stock <= 3 && (
-            <span className="absolute top-3 left-3 rounded-full bg-foreground text-background px-3 py-1 text-xs font-medium">
+            <span className="absolute top-3 left-3 rounded-full bg-primary text-primary-foreground px-3 py-1 text-xs font-medium">
               Últimas unidades
             </span>
           )}
           
           {/* Badge de esgotado */}
           {product.stock === 0 && (
-            <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-sm">
-              <span className="rounded-full bg-foreground/10 px-4 py-2 text-sm font-medium text-foreground">
+            <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+              <span className="rounded-full bg-secondary px-4 py-2 text-sm font-medium text-muted-foreground">
                 Esgotado
               </span>
             </div>
@@ -82,12 +82,11 @@ export function ProductCard({ product }: ProductCardProps) {
         <Button
           onClick={handleAddToCart}
           disabled={product.stock === 0}
-          variant="secondary"
           size="sm"
-          className="w-full gap-2 mt-3 rounded-full font-medium"
+          className="w-full gap-2 mt-3 rounded-full font-medium hover-glow"
         >
           <ShoppingCart className="h-4 w-4" />
-          Adicionar ao Carrinho
+          Adicionar
         </Button>
       </div>
     </div>

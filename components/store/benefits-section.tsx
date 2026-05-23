@@ -26,7 +26,7 @@ const iconMap = {
 
 export function BenefitsSection() {
   return (
-    <section className="py-20 md:py-28 border-y border-border/50 bg-secondary/30">
+    <section className="py-20 md:py-28 border-y border-border/40 bg-card/50">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Título da Seção */}
         <h2 className="mb-16 text-center text-2xl font-semibold md:text-3xl lg:text-4xl text-foreground">
@@ -45,8 +45,8 @@ export function BenefitsSection() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Ícone minimalista */}
-                <div className="mb-5">
-                  <IconComponent className="h-8 w-8 text-primary" strokeWidth={1.5} />
+                <div className="mb-5 p-4 rounded-2xl bg-primary/10">
+                  <IconComponent className="h-7 w-7 text-primary" strokeWidth={1.5} />
                 </div>
                 
                 {/* Título do Benefício */}
@@ -55,7 +55,7 @@ export function BenefitsSection() {
                 </h3>
                 
                 {/* Descrição */}
-                <p className="text-sm text-foreground/60 leading-relaxed max-w-[200px]">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-[200px]">
                   {benefit.description}
                 </p>
               </div>

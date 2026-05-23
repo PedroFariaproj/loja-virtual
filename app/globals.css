@@ -1,11 +1,17 @@
 /**
  * =============================================================================
- * ESTILOS GLOBAIS - TEMA CLEAN APPLE
+ * ESTILOS GLOBAIS - TEMA ESCURO APPLE
  * =============================================================================
  * 
- * Visual minimalista inspirado na Apple Store
- * Fundo claro, tipografia elegante, muito espaço em branco
- * Destaque sutil em azul Apple (#0071E3)
+ * Visual premium inspirado na Apple - tema escuro elegante
+ * Fundo preto profundo, cards cinza escuro, azul Apple (#0071E3)
+ * 
+ * PARA ALTERAR AS CORES:
+ * - Modifique as variáveis abaixo (oklch ou hsl)
+ * - --background: cor de fundo principal
+ * - --foreground: cor do texto principal
+ * - --primary: cor de destaque (azul Apple)
+ * - --card: cor dos cards
  * =============================================================================
  */
 
@@ -15,100 +21,69 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   TEMA CLARO (PADRÃO) - Apple Style
-   Fundo branco/off-white, texto preto, acentos sutis
+   TEMA ESCURO APPLE (PADRÃO)
+   Fundo preto profundo, texto branco, azul Apple como destaque
    ============================================================================= */
 :root {
-  /* Fundo principal - Branco puro */
-  --background: oklch(0.995 0 0);
-  /* Texto principal - Preto suave */
-  --foreground: oklch(0.13 0 0);
+  /* Fundo principal - Preto profundo */
+  --background: oklch(0.07 0 0);
+  /* Texto principal - Branco */
+  --foreground: oklch(0.98 0 0);
   
-  /* Cards - Branco com leve sombra */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0 0);
+  /* Cards - Cinza escuro suave */
+  --card: oklch(0.12 0.005 280);
+  --card-foreground: oklch(0.98 0 0);
   
-  /* Popovers */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0 0);
+  /* Popovers e dropdowns */
+  --popover: oklch(0.14 0.005 280);
+  --popover-foreground: oklch(0.98 0 0);
   
   /* Cor primária - Azul Apple (#0071E3) */
-  --primary: oklch(0.55 0.2 250);
+  --primary: oklch(0.58 0.18 250);
   --primary-foreground: oklch(1 0 0);
   
-  /* Cor secundária - Cinza muito claro */
-  --secondary: oklch(0.965 0.001 286);
-  --secondary-foreground: oklch(0.2 0 0);
+  /* Cor secundária - Cinza escuro */
+  --secondary: oklch(0.18 0.005 280);
+  --secondary-foreground: oklch(0.92 0 0);
   
-  /* Elementos mutados - Cinza suave */
-  --muted: oklch(0.965 0.001 286);
-  --muted-foreground: oklch(0.45 0 0);
+  /* Elementos mutados - Cinza médio */
+  --muted: oklch(0.2 0.005 280);
+  --muted-foreground: oklch(0.65 0 0);
   
   /* Acentos */
-  --accent: oklch(0.965 0.001 286);
-  --accent-foreground: oklch(0.2 0 0);
+  --accent: oklch(0.18 0.005 280);
+  --accent-foreground: oklch(0.92 0 0);
   
-  /* Destrutivo - Vermelho Apple */
-  --destructive: oklch(0.55 0.22 25);
+  /* Destrutivo - Vermelho suave */
+  --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(1 0 0);
   
-  /* Bordas e inputs - Cinza muito sutil */
-  --border: oklch(0.91 0.002 286);
-  --input: oklch(0.91 0.002 286);
-  --ring: oklch(0.55 0.2 250);
+  /* Bordas - Cinza muito sutil */
+  --border: oklch(0.22 0.005 280);
+  /* Inputs - Fundo escuro com borda sutil */
+  --input: oklch(0.15 0.005 280);
+  /* Ring de foco - Azul Apple */
+  --ring: oklch(0.58 0.18 250);
   
   /* Gráficos */
-  --chart-1: oklch(0.55 0.2 250);
+  --chart-1: oklch(0.58 0.18 250);
   --chart-2: oklch(0.6 0.15 180);
   --chart-3: oklch(0.5 0.12 280);
   --chart-4: oklch(0.75 0.15 85);
   --chart-5: oklch(0.65 0.18 35);
   
-  /* Raio de borda - Arredondamento Apple */
-  --radius: 0.875rem;
+  /* Raio de borda - Arredondamento elegante */
+  --radius: 0.75rem;
   
-  /* Sidebar - Cinza claro elegante */
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.13 0 0);
-  --sidebar-primary: oklch(0.55 0.2 250);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.965 0.001 286);
-  --sidebar-accent-foreground: oklch(0.2 0 0);
-  --sidebar-border: oklch(0.91 0.002 286);
-  --sidebar-ring: oklch(0.55 0.2 250);
-}
-
-/* =============================================================================
-   TEMA ESCURO (Admin Dashboard)
-   ============================================================================= */
-.dark {
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.12 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.58 0.2 250);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.18 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.18 0 0);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.18 0 0);
-  --ring: oklch(0.58 0.2 250);
-  --sidebar: oklch(0.1 0 0);
+  /* Sidebar - Preto mais escuro */
+  --sidebar: oklch(0.05 0 0);
   --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.58 0.2 250);
+  --sidebar-primary: oklch(0.58 0.18 250);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.18 0 0);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.22 0 0);
-  --sidebar-ring: oklch(0.58 0.2 250);
+  --sidebar-accent: oklch(0.15 0.005 280);
+  --sidebar-accent-foreground: oklch(0.92 0 0);
+  --sidebar-border: oklch(0.18 0.005 280);
+  --sidebar-ring: oklch(0.58 0.18 250);
 }
 
 /* =============================================================================
@@ -170,32 +145,31 @@
 @layer utilities {
   /* Fade in elegante */
   .animate-fade-in {
-    animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     opacity: 0;
   }
   
   /* Slide up suave */
   .animate-slide-up {
-    animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     opacity: 0;
   }
   
-  /* Efeito de brilho sutil em hover */
+  /* Efeito de brilho sutil em hover - Azul Apple */
   .hover-glow {
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .hover-glow:hover {
-    box-shadow: 0 4px 20px rgba(0, 113, 227, 0.25);
-    transform: translateY(-1px);
+    box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
   }
 
   /* Transição suave para cards */
   .card-hover {
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .card-hover:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+    background: oklch(0.15 0.005 280);
+    border-color: oklch(0.28 0.005 280);
   }
 }
 
@@ -211,7 +185,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -220,7 +194,7 @@
 }
 
 /* =============================================================================
-   SCROLLBAR ELEGANTE
+   SCROLLBAR ELEGANTE - Estilo Apple Escuro
    ============================================================================= */
 ::-webkit-scrollbar {
   width: 8px;
@@ -228,29 +202,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: oklch(0.1 0 0);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.8 0 0);
+  background: oklch(0.25 0 0);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.65 0 0);
-}
-
-/* Dark mode scrollbar */
-.dark::-webkit-scrollbar-track {
-  background: oklch(0.1 0 0);
-}
-
-.dark::-webkit-scrollbar-thumb {
-  background: oklch(0.3 0 0);
-}
-
-.dark::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.4 0 0);
+  background: oklch(0.35 0 0);
 }
 
 /* =============================================================================
@@ -259,8 +220,8 @@
 
 /* Seleção de texto com cor Apple */
 ::selection {
-  background: oklch(0.55 0.2 250 / 0.2);
-  color: inherit;
+  background: oklch(0.58 0.18 250 / 0.3);
+  color: oklch(1 0 0);
 }
 
 /* Links com transição suave */
@@ -273,13 +234,23 @@ img {
   transition: opacity 0.3s ease;
 }
 
-/* Focus ring estilo Apple */
+/* Focus ring estilo Apple - Azul */
 :focus-visible {
-  outline: 2px solid oklch(0.55 0.2 250);
+  outline: 2px solid oklch(0.58 0.18 250);
   outline-offset: 2px;
 }
 
 /* Botões com transições suaves */
 button {
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Inputs estilo Apple - Fundo escuro, borda sutil, foco azul */
+input, textarea, select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: oklch(0.58 0.18 250) !important;
+  box-shadow: 0 0 0 3px oklch(0.58 0.18 250 / 0.15);
 }

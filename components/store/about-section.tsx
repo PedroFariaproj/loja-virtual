@@ -24,7 +24,7 @@ export function AboutSection() {
           </h2>
 
           {/* Parágrafos de descrição */}
-          <div className="space-y-6 text-foreground/60 text-lg md:text-xl leading-relaxed">
+          <div className="space-y-6 text-muted-foreground text-lg md:text-xl leading-relaxed">
             {storeConfig.about.paragraphs.map((paragraph, index) => (
               <p 
                 key={index}

@@ -4,7 +4,9 @@
  * =============================================================================
  * 
  * Componente de navegação principal da loja pública.
- * O nome da loja vem do arquivo lib/store-config.ts
+ * 
+ * O NOME DA LOJA é buscado do banco de dados (Supabase).
+ * Para alterar: vá em Admin > Configurações > Nome da Loja
  * =============================================================================
  */
 
@@ -17,7 +19,7 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCart } from '@/hooks/use-cart'
-import { storeConfig } from '@/lib/store-config'
+import { useStoreSettings } from '@/hooks/use-store-settings'
 
 /**
  * Links de navegação do header.
@@ -30,15 +32,16 @@ const navLinks = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const { getTotalItems } = useCart()
+  const { storeName } = useStoreSettings() // Nome dinâmico do banco de dados
   const totalItems = getTotalItems()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex h-14 items-center justify-between px-4 lg:px-8">
-        {/* Logo - Nome vem do store-config.ts */}
+        {/* Logo - Nome vem do BANCO DE DADOS (Supabase) */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
-            {storeConfig.storeName}
+            {storeName}
           </span>
         </Link>
 
