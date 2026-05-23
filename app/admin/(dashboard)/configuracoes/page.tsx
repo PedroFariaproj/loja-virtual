@@ -21,6 +21,11 @@ export const metadata: Metadata = {
 async function getSettings(): Promise<Settings | null> {
   const supabase = await createClient()
   
+  // Se o Supabase não está configurado, retorna null
+  if (!supabase) {
+    return null
+  }
+  
   const { data: settings, error } = await supabase
     .from('settings')
     .select('*')

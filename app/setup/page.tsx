@@ -23,6 +23,11 @@ import { SetupForm } from '@/components/admin/setup-form'
 async function hasAnyAdmin(): Promise<boolean> {
   const supabase = await createClient()
   
+  // Se o Supabase não está configurado, assume que não há admin
+  if (!supabase) {
+    return false
+  }
+  
   const { count } = await supabase
     .from('profiles')
     .select('*', { count: 'exact', head: true })

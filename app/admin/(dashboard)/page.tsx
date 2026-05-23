@@ -20,6 +20,16 @@ import { Package, PackageCheck, PackageX, Users } from 'lucide-react'
 async function getStats() {
   const supabase = await createClient()
 
+  // Se o Supabase não está configurado, retorna valores padrão
+  if (!supabase) {
+    return {
+      totalProducts: 0,
+      activeProducts: 0,
+      inactiveProducts: 0,
+      totalAdmins: 0,
+    }
+  }
+
   // Busca contagem de produtos
   const { count: totalProducts } = await supabase
     .from('products')

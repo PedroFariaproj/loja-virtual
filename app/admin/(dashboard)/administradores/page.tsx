@@ -22,6 +22,11 @@ export const metadata: Metadata = {
 async function getAdmins(): Promise<Profile[]> {
   const supabase = await createClient()
   
+  // Se o Supabase não está configurado, retorna array vazio
+  if (!supabase) {
+    return []
+  }
+  
   const { data: admins, error } = await supabase
     .from('profiles')
     .select('*')
@@ -37,6 +42,12 @@ async function getAdmins(): Promise<Profile[]> {
 
 async function getCurrentUserId(): Promise<string | null> {
   const supabase = await createClient()
+  
+  // Se o Supabase não está configurado, retorna null
+  if (!supabase) {
+    return null
+  }
+  
   const { data: { user } } = await supabase.auth.getUser()
   return user?.id || null
 }

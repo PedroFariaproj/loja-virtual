@@ -48,7 +48,9 @@ export function AdminHeader({ userName }: AdminHeaderProps) {
 
   const handleLogout = async () => {
     const supabase = createClient()
-    await supabase.auth.signOut()
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
     router.push('/admin/login')
     router.refresh()
   }

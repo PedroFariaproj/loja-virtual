@@ -37,6 +37,11 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createClient()
     
+    // Se o Supabase não está configurado, redireciona para erro
+    if (!supabase) {
+      return NextResponse.redirect(`${origin}/auth/error`)
+    }
+    
     // Troca o código por uma sessão válida
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     
