@@ -16,6 +16,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { storeConfig } from '@/lib/store-config'
 import './globals.css'
 
 // Configuração da fonte principal (Geist - moderna e limpa)
@@ -37,17 +38,17 @@ const geistMono = Geist_Mono({
  * Altere conforme necessário para sua loja.
  */
 export const metadata: Metadata = {
-  // Título que aparece na aba do navegador
+  // Título que aparece na aba do navegador - usa o nome do store-config.ts
   title: {
-    default: 'iPhone Premium Store | Os Melhores iPhones com Garantia',
-    template: '%s | iPhone Premium Store',
+    default: `${storeConfig.storeName} | ${storeConfig.tagline}`,
+    template: `%s | ${storeConfig.storeName}`,
   },
   // Descrição para mecanismos de busca
-  description: 'Loja especializada em iPhones e smartphones premium. Aparelhos revisados com garantia, entrega rápida e atendimento personalizado.',
+  description: storeConfig.description,
   // Palavras-chave para SEO
   keywords: ['iphone', 'smartphone', 'apple', 'celular', 'loja', 'premium', 'garantia'],
   // Autor
-  authors: [{ name: 'iPhone Premium Store' }],
+  authors: [{ name: storeConfig.storeName }],
   // Gerador
   generator: 'Next.js',
   // Ícones
@@ -63,15 +64,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    siteName: 'iPhone Premium Store',
-    title: 'iPhone Premium Store | Os Melhores iPhones com Garantia',
-    description: 'Loja especializada em iPhones e smartphones premium.',
+    siteName: storeConfig.storeName,
+    title: `${storeConfig.storeName} | ${storeConfig.tagline}`,
+    description: storeConfig.description,
   },
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'iPhone Premium Store',
-    description: 'Os melhores iPhones com garantia e qualidade.',
+    title: storeConfig.storeName,
+    description: storeConfig.tagline,
   },
 }
 

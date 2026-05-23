@@ -3,53 +3,32 @@
  * PÁGINA INICIAL - HOME DA LOJA
  * =============================================================================
  * 
- * Página principal da loja virtual.
- * Exibe o banner hero, seção de benefícios e produtos em destaque.
+ * Página principal focada em apresentar a loja.
+ * Os produtos estão na página /produtos
  * 
  * SEÇÕES:
- * 1. Hero Banner - Mensagem principal e CTA
- * 2. Benefícios - 4 cards com vantagens da loja
- * 3. Produtos em Destaque - Grid de produtos ativos
+ * 1. Hero Banner - Mensagem principal e CTAs
+ * 2. Benefícios - Cards com vantagens da loja
+ * 3. Sobre - Informações sobre a loja
+ * 4. CTA - Chamada para ver produtos
+ * 
+ * COMO PERSONALIZAR:
+ * Edite o arquivo lib/store-config.ts para alterar textos e configurações.
  * =============================================================================
  */
 
-import { createClient } from '@/lib/supabase/server'
 import { Header } from '@/components/store/header'
 import { Footer } from '@/components/store/footer'
 import { HeroSection } from '@/components/store/hero-section'
 import { BenefitsSection } from '@/components/store/benefits-section'
-import { ProductsSection } from '@/components/store/products-section'
-
-/**
- * Busca os produtos ativos do banco de dados.
- * Ordena por data de criação (mais recentes primeiro).
- */
-async function getProducts() {
-  const supabase = await createClient()
-  
-  const { data: products, error } = await supabase
-    .from('products')
-    .select('*')
-    .eq('active', true)
-    .order('created_at', { ascending: false })
-    .limit(8) // Limita a 8 produtos na home
-
-  if (error) {
-    console.error('Erro ao buscar produtos:', error)
-    return []
-  }
-
-  return products || []
-}
+import { AboutSection } from '@/components/store/about-section'
+import { CtaSection } from '@/components/store/cta-section'
 
 /**
  * Página inicial da loja.
- * Server Component que busca os dados do banco.
+ * Apresenta a loja e direciona para os produtos.
  */
-export default async function HomePage() {
-  // Busca produtos do banco de dados
-  const products = await getProducts()
-
+export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Cabeçalho com navegação */}
@@ -57,14 +36,17 @@ export default async function HomePage() {
 
       {/* Conteúdo principal */}
       <main className="flex-1">
-        {/* Seção Hero - Banner principal */}
+        {/* Seção Hero - Banner principal com CTAs */}
         <HeroSection />
 
         {/* Seção de Benefícios */}
         <BenefitsSection />
 
-        {/* Seção de Produtos em Destaque */}
-        <ProductsSection products={products} />
+        {/* Seção Sobre a Loja */}
+        <AboutSection />
+
+        {/* Seção CTA - Chamada para produtos */}
+        <CtaSection />
       </main>
 
       {/* Rodapé */}

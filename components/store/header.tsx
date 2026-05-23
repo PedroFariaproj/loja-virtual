@@ -4,11 +4,7 @@
  * =============================================================================
  * 
  * Componente de navegação principal da loja pública.
- * Exibe o logo, menu de navegação e botão do carrinho.
- * 
- * COMO ALTERAR O LOGO:
- * 1. Substitua o texto "iPhone Premium" pelo nome da sua loja
- * 2. Ou adicione uma imagem/SVG no lugar do texto
+ * O nome da loja vem do arquivo lib/store-config.ts
  * =============================================================================
  */
 
@@ -21,10 +17,10 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCart } from '@/hooks/use-cart'
+import { storeConfig } from '@/lib/store-config'
 
 /**
  * Links de navegação do header.
- * Adicione ou remova itens conforme necessário.
  */
 const navLinks = [
   { href: '/', label: 'Início' },
@@ -32,21 +28,17 @@ const navLinks = [
 ]
 
 export function Header() {
-  // Estado para controlar o menu mobile
   const [isOpen, setIsOpen] = useState(false)
-  
-  // Hook do carrinho para mostrar quantidade de itens
   const { getTotalItems } = useCart()
   const totalItems = getTotalItems()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo - Clique para voltar à home */}
+        {/* Logo - Nome vem do store-config.ts */}
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight">
-            {/* ALTERE AQUI: Nome da sua loja */}
-            iPhone Premium
+            {storeConfig.storeName}
           </span>
         </Link>
 
@@ -65,11 +57,17 @@ export function Header() {
 
         {/* Ações do Header */}
         <div className="flex items-center gap-2">
+          {/* Botão Ver Produtos - Destaque */}
+          <Link href="/produtos" className="hidden sm:inline-flex">
+            <Button size="sm" className="gap-2">
+              Ver Produtos
+            </Button>
+          </Link>
+
           {/* Botão do Carrinho */}
           <Link href="/carrinho">
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-5 w-5" />
-              {/* Badge com quantidade de itens */}
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                   {totalItems > 99 ? '99+' : totalItems}
@@ -79,7 +77,7 @@ export function Header() {
             </Button>
           </Link>
 
-          {/* Botão Administrador (Desktop) - Visível somente em telas md+ */}
+          {/* Botão Administrador (Desktop) */}
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -130,10 +128,8 @@ export function Header() {
                   Carrinho {totalItems > 0 && `(${totalItems})`}
                 </Link>
 
-                {/* Separador visual */}
                 <div className="my-2 border-t border-border" />
 
-                {/* Link Administrador no menu mobile */}
                 <Link
                   href="/admin/login"
                   onClick={() => setIsOpen(false)}
