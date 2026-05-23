@@ -67,9 +67,7 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
    */
   const handleLogout = async () => {
     const supabase = createClient()
-    if (supabase) {
-      await supabase.auth.signOut()
-    }
+    await supabase.auth.signOut()
     router.push('/admin/login')
     router.refresh()
   }

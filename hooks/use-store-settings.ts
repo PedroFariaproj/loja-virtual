@@ -47,14 +47,6 @@ export function useStoreSettings(): UseStoreSettingsReturn {
     try {
       const supabase = createClient()
       
-      // Se o Supabase não está configurado, usa apenas o fallback
-      if (!supabase) {
-        console.warn('[useStoreSettings] Supabase não configurado, usando valores padrão')
-        setSettings(null)
-        setIsLoading(false)
-        return
-      }
-      
       const { data, error } = await supabase
         .from('settings')
         .select('*')

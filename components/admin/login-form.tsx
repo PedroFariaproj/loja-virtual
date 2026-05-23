@@ -38,12 +38,6 @@ export function LoginForm() {
 
     try {
       const supabase = createClient()
-      
-      // Verifica se o Supabase está configurado
-      if (!supabase) {
-        setError('Sistema não configurado. Entre em contato com o administrador.')
-        return
-      }
 
       // Tenta fazer login com email e senha
       const { error: signInError } = await supabase.auth.signInWithPassword({
