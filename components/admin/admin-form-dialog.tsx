@@ -70,6 +70,13 @@ export function AdminFormDialog({
     setIsLoading(true)
     const supabase = createClient()
 
+    // Verifica se o Supabase está configurado
+    if (!supabase) {
+      setError('Sistema não configurado. Entre em contato com o administrador.')
+      setIsLoading(false)
+      return
+    }
+
     try {
       // 1. Cria o usuário no Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({

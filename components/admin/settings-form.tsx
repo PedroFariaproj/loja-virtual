@@ -44,6 +44,13 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
 
     const supabase = createClient()
 
+    // Verifica se o Supabase está configurado
+    if (!supabase) {
+      alert('Sistema não configurado. Entre em contato com o administrador.')
+      setIsLoading(false)
+      return
+    }
+
     try {
       if (initialSettings) {
         // Atualiza configurações existentes
