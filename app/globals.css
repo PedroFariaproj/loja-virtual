@@ -336,3 +336,98 @@ input:focus, textarea:focus, select:focus {
   border-color: oklch(0.58 0.18 250) !important;
   box-shadow: 0 0 0 3px oklch(0.58 0.18 250 / 0.15);
 }
+
+/* =============================================================================
+   RESPONSIVIDADE MOBILE - Otimizações para telas pequenas
+   ============================================================================= */
+
+/* Ajustes de tamanho de fonte para mobile */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+  
+  /* Títulos menores no mobile */
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Containers com padding adequado */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Botões touch-friendly */
+  button, a[role="button"], .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Inputs maiores no mobile */
+  input, textarea, select {
+    font-size: 16px !important; /* Previne zoom no iOS */
+    min-height: 44px;
+  }
+  
+  /* Cards com menos padding */
+  .card {
+    padding: 1rem;
+  }
+  
+  /* Grid adaptativo */
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15.5px;
+  }
+}
+
+/* Previne overflow horizontal */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Texto responsivo com clamp */
+.text-responsive-hero {
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.text-responsive-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.text-responsive-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+/* Word wrap para textos longos */
+p, h1, h2, h3, h4, h5, h6, span, a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Imagens responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+}

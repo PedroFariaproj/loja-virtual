@@ -10,6 +10,7 @@
 
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ShoppingCart } from 'lucide-react'
@@ -24,6 +25,11 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart()
+  
+  // Hidratação do carrinho
+  useEffect(() => {
+    useCart.persist.rehydrate()
+  }, [])
 
   const handleAddToCart = () => {
     addItem(product)
@@ -67,14 +73,14 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* Informações do Produto */}
-      <div className="space-y-2">
+      <div className="space-y-1.5 sm:space-y-2">
         <Link href={`/produtos/${product.id}`} className="block">
-          <h3 className="font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors text-sm sm:text-base leading-snug">
             {product.name}
           </h3>
         </Link>
         
-        <p className="text-lg font-semibold text-foreground">
+        <p className="text-base sm:text-lg font-semibold text-foreground">
           {formatPrice(product.price)}
         </p>
         
@@ -83,10 +89,10 @@ export function ProductCard({ product }: ProductCardProps) {
           onClick={handleAddToCart}
           disabled={product.stock === 0}
           size="sm"
-          className="w-full gap-2 mt-3 rounded-full font-medium hover-glow"
+          className="w-full gap-2 mt-2 sm:mt-3 rounded-full font-medium hover-glow text-sm h-10"
         >
           <ShoppingCart className="h-4 w-4" />
-          Adicionar
+          <span className="sm:inline">Adicionar</span>
         </Button>
       </div>
     </div>

@@ -13,7 +13,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Minus, Plus, ShoppingCart, Check } from 'lucide-react'
@@ -38,6 +38,11 @@ export function ProductDetail({ product, images }: ProductDetailProps) {
   
   // Hook do carrinho
   const { addItem } = useCart()
+
+  // Hidratação do carrinho
+  useEffect(() => {
+    useCart.persist.rehydrate()
+  }, [])
 
   // Monta array de todas as imagens (principal + galeria)
   const allImages = [

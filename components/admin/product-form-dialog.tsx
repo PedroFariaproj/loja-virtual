@@ -24,6 +24,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { createClient } from '@/lib/supabase/client'
+import { optimizeImage } from '@/lib/image-utils'
 import type { Product } from '@/lib/types'
 
 interface ProductFormDialogProps {
@@ -76,17 +77,33 @@ export function ProductFormDialog({
   }
 
   /**
-   * Processa a seleção de imagem.
+   * Processa a seleção de imagem com otimização automática.
+   * Comprime e redimensiona a imagem para um tamanho adequado.
    */
-  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      setImageFile(file)
-      const reader = new FileReader()
-      reader.onload = () => {
-        setImagePreview(reader.result as string)
+      try {
+        // Otimiza a imagem (comprime e redimensiona)
+        const optimizedFile = await optimizeImage(file)
+        setImageFile(optimizedFile)
+        
+        // Gera preview
+        const reader = new FileReader()
+        reader.onload = () => {
+          setImagePreview(reader.result as string)
+        }
+        reader.readAsDataURL(optimizedFile)
+      } catch (error) {
+        console.error('Erro ao otimizar imagem:', error)
+        // Se falhar a otimização, usa a imagem original
+        setImageFile(file)
+        const reader = new FileReader()
+        reader.onload = () => {
+          setImagePreview(reader.result as string)
+        }
+        reader.readAsDataURL(file)
       }
-      reader.readAsDataURL(file)
     }
   }
 

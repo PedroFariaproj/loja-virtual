@@ -14,7 +14,7 @@
 
 import Link from 'next/link'
 import { ShoppingCart, Menu, Lock } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -32,9 +32,17 @@ const navLinks = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { getTotalItems } = useCart()
   const { storeName } = useStoreSettings() // Nome dinâmico do banco de dados
-  const totalItems = getTotalItems()
+  
+  // Hidratação do carrinho - evita mismatch SSR/Client
+  useEffect(() => {
+    useCart.persist.rehydrate()
+    setMounted(true)
+  }, [])
+  
+  const totalItems = mounted ? getTotalItems() : 0
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80">

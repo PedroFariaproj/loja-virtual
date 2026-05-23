@@ -46,6 +46,8 @@ interface CartState {
 /**
  * Store do carrinho usando Zustand.
  * Os dados são persistidos no localStorage automaticamente.
+ * 
+ * IMPORTANTE: skipHydration evita erros de hidratação SSR/Client
  */
 export const useCart = create<CartState>()(
   persist(
@@ -142,6 +144,8 @@ export const useCart = create<CartState>()(
     {
       // Nome da chave no localStorage
       name: 'cart-storage',
+      // Evita hidratação automática para prevenir mismatch SSR/Client
+      skipHydration: true,
     }
   )
 )
