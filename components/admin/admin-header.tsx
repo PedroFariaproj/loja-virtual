@@ -75,63 +75,63 @@ export function AdminHeader({ userName }: AdminHeaderProps) {
             </Button>
           </SheetTrigger>
 
-        <SheetContent side="right" className="w-[280px] p-0">
-          <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
-          
-          {/* Header do Sheet */}
-          <div className="flex h-16 items-center justify-between border-b border-border/40 px-4">
-            <span className="font-bold">Menu</span>
-          </div>
-
-          {/* Navegação */}
-          <nav className="flex-1 space-y-1 p-4">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-                  )}
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.label}
-                </Link>
-              )
-            })}
-          </nav>
-
-          <Separator />
-
-          {/* Área do Usuário */}
-          <div className="p-4">
-            <div className="mb-4 rounded-lg bg-muted/50 p-3">
-              <p className="font-medium">{userName}</p>
+          <SheetContent side="right" className="w-[280px] p-0">
+            <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
+            
+            {/* Header do Sheet */}
+            <div className="flex h-16 items-center justify-between border-b border-border/40 px-4">
+              <span className="font-bold">Menu</span>
             </div>
 
-            <Link href="/" target="_blank" onClick={() => setIsOpen(false)}>
-              <Button variant="outline" className="w-full mb-2 gap-2">
-                <Store className="h-4 w-4" />
-                Ver Loja
-              </Button>
-            </Link>
+            {/* Navegação */}
+            <nav className="flex-1 space-y-1 p-4">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                    )}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </nav>
 
-            <Button 
-              variant="ghost" 
-              className="w-full gap-2 text-muted-foreground hover:text-destructive"
-              onClick={handleLogout}
-            >
-              <LogOut className="h-4 w-4" />
-              Sair
-            </Button>
-          </div>
-        </SheetContent>
-      </Sheet>
+            <Separator />
+
+            {/* Área do Usuário */}
+            <div className="p-4">
+              <div className="mb-4 rounded-lg bg-muted/50 p-3">
+                <p className="font-medium">{userName}</p>
+              </div>
+
+              <Link href="/" target="_blank" onClick={() => setIsOpen(false)}>
+                <Button variant="outline" className="w-full mb-2 gap-2">
+                  <Store className="h-4 w-4" />
+                  Ver Loja
+                </Button>
+              </Link>
+
+              <Button 
+                variant="ghost" 
+                className="w-full gap-2 text-muted-foreground hover:text-destructive"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4" />
+                Sair
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   )
