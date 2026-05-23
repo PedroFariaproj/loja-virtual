@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 
@@ -74,9 +75,13 @@ export function AdminSidebar({ userName, userEmail }: AdminSidebarProps) {
   return (
     <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col border-r border-border/40 bg-card/50 lg:flex">
       {/* Logo/Título */}
-      <div className="flex h-16 items-center gap-2 border-b border-border/40 px-6">
-        <Store className="h-6 w-6 text-primary" />
-        <span className="text-lg font-bold">Admin</span>
+      <div className="flex h-16 items-center justify-between border-b border-border/40 px-6">
+        <div className="flex items-center gap-2">
+          <Store className="h-6 w-6 text-primary" />
+          <span className="text-lg font-bold">Admin</span>
+        </div>
+        {/* Botão de Tema Claro/Escuro */}
+        <ThemeToggle />
       </div>
 
       {/* Navegação */}

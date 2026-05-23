@@ -4,11 +4,9 @@
  * =============================================================================
  * 
  * Componente de navegação principal da loja pública.
- * Exibe o logo, menu de navegação e botão do carrinho.
  * 
- * COMO ALTERAR O LOGO:
- * 1. Substitua o texto "iPhone Premium" pelo nome da sua loja
- * 2. Ou adicione uma imagem/SVG no lugar do texto
+ * O NOME DA LOJA é buscado do banco de dados (Supabase).
+ * Para alterar: vá em Admin > Configurações > Nome da Loja
  * =============================================================================
  */
 
@@ -16,15 +14,16 @@
 
 import Link from 'next/link'
 import { ShoppingCart, Menu, Lock } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { useCart } from '@/hooks/use-cart'
+import { useStoreSettings } from '@/hooks/use-store-settings'
 
 /**
  * Links de navegação do header.
- * Adicione ou remova itens conforme necessário.
  */
 const navLinks = [
   { href: '/', label: 'Início' },
@@ -32,31 +31,36 @@ const navLinks = [
 ]
 
 export function Header() {
-  // Estado para controlar o menu mobile
   const [isOpen, setIsOpen] = useState(false)
-  
-  // Hook do carrinho para mostrar quantidade de itens
+  const [mounted, setMounted] = useState(false)
   const { getTotalItems } = useCart()
-  const totalItems = getTotalItems()
+  const { storeName } = useStoreSettings() // Nome dinâmico do banco de dados
+  
+  // Hidratação do carrinho - evita mismatch SSR/Client
+  useEffect(() => {
+    useCart.persist.rehydrate()
+    setMounted(true)
+  }, [])
+  
+  const totalItems = mounted ? getTotalItems() : 0
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo - Clique para voltar à home */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight">
-            {/* ALTERE AQUI: Nome da sua loja */}
-            iPhone Premium
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80">
+      <div className="container mx-auto flex h-14 items-center justify-between px-4 lg:px-8">
+        {/* Logo - Nome vem do BANCO DE DADOS (Supabase) */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <span className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
+            {storeName}
           </span>
         </Link>
 
         {/* Navegação Desktop */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
@@ -65,11 +69,17 @@ export function Header() {
 
         {/* Ações do Header */}
         <div className="flex items-center gap-2">
+          {/* Botão Ver Produtos - Destaque */}
+          <Link href="/produtos" className="hidden sm:inline-flex">
+            <Button size="sm" className="gap-2">
+              Ver Produtos
+            </Button>
+          </Link>
+
           {/* Botão do Carrinho */}
           <Link href="/carrinho">
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-5 w-5" />
-              {/* Badge com quantidade de itens */}
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                   {totalItems > 99 ? '99+' : totalItems}
@@ -79,7 +89,7 @@ export function Header() {
             </Button>
           </Link>
 
-          {/* Botão Administrador (Desktop) - Visível somente em telas md+ */}
+          {/* Botão Administrador (Desktop) */}
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -99,6 +109,9 @@ export function Header() {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
+
+          {/* Botão de Alternância de Tema (Claro/Escuro) */}
+          <ThemeToggle />
 
           {/* Menu Mobile */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -130,10 +143,8 @@ export function Header() {
                   Carrinho {totalItems > 0 && `(${totalItems})`}
                 </Link>
 
-                {/* Separador visual */}
                 <div className="my-2 border-t border-border" />
 
-                {/* Link Administrador no menu mobile */}
                 <Link
                   href="/admin/login"
                   onClick={() => setIsOpen(false)}

@@ -3,8 +3,12 @@
  * PÁGINA DE CATÁLOGO - LISTA DE PRODUTOS
  * =============================================================================
  * 
- * Exibe todos os produtos ativos da loja em um grid responsivo.
- * Inclui busca e filtros básicos.
+ * Exibe todos os produtos com:
+ * - Barra de busca por nome
+ * - Filtro por faixa de preço
+ * - Ordenação
+ * 
+ * Configurações vêm do arquivo lib/store-config.ts
  * =============================================================================
  */
 
@@ -12,13 +16,13 @@ import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { Header } from '@/components/store/header'
 import { Footer } from '@/components/store/footer'
-import { ProductCard } from '@/components/store/product-card'
-import { Package } from 'lucide-react'
+import { ProductsGrid } from '@/components/store/products-grid'
+import { storeConfig } from '@/lib/store-config'
 import type { Product } from '@/lib/types'
 
 export const metadata: Metadata = {
-  title: 'Produtos',
-  description: 'Confira todos os iPhones e smartphones disponíveis em nossa loja.',
+  title: `Produtos | ${storeConfig.storeName}`,
+  description: storeConfig.products.subtitle,
 }
 
 /**
@@ -48,45 +52,23 @@ export default async function ProductsPage() {
   const products = await getProducts()
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header />
 
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16">
           {/* Cabeçalho da Página */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold md:text-4xl">Nossos Produtos</h1>
-            <p className="mt-2 text-muted-foreground">
-              {products.length > 0 
-                ? `${products.length} produto${products.length > 1 ? 's' : ''} disponível${products.length > 1 ? 'is' : ''}`
-                : 'Nenhum produto disponível no momento'
-              }
+          <div className="mb-12 text-center">
+            <h1 className="text-3xl font-semibold md:text-4xl lg:text-5xl text-foreground">
+              {storeConfig.products.title}
+            </h1>
+            <p className="mt-4 text-lg text-foreground/60 max-w-xl mx-auto">
+              {storeConfig.products.subtitle}
             </p>
           </div>
 
-          {/* Grid de Produtos ou Estado Vazio */}
-          {products.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {products.map((product, index) => (
-                <div 
-                  key={product.id}
-                  className="animate-slide-up"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border/60 bg-card/30 py-20">
-              <Package className="h-16 w-16 text-muted-foreground/50" />
-              <h2 className="mt-6 text-xl font-medium">Nenhum produto disponível</h2>
-              <p className="mt-2 text-center text-muted-foreground">
-                Em breve teremos novos iPhones para você.<br />
-                Volte em breve!
-              </p>
-            </div>
-          )}
+          {/* Grid de Produtos com Busca e Filtros */}
+          <ProductsGrid products={products} />
         </div>
       </main>
 

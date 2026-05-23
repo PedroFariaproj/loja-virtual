@@ -4,8 +4,11 @@
  * =============================================================================
  * 
  * Formulário para editar as configurações da loja:
- * - Nome da loja
+ * - Nome da loja (atualiza automaticamente no header, footer e todo o site)
  * - Número do WhatsApp
+ * 
+ * ONDE O NOME É SALVO: Tabela "settings" no Supabase
+ * ONDE O NOME APARECE: Header, Footer, título das páginas, SEO
  * =============================================================================
  */
 
@@ -68,7 +71,12 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
 
       // Feedback de sucesso
       setIsSaved(true)
-      setTimeout(() => setIsSaved(false), 3000)
+      
+      // Recarrega a página para refletir o novo nome em todo o site
+      setTimeout(() => {
+        setIsSaved(false)
+        window.location.reload()
+      }, 1500)
     } catch (error) {
       console.error('Erro ao salvar configurações:', error)
       alert('Erro ao salvar configurações. Tente novamente.')

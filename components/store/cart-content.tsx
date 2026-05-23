@@ -13,7 +13,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Trash2, Minus, Plus, ShoppingBag, MessageCircle, ArrowLeft } from 'lucide-react'
@@ -30,6 +30,9 @@ interface CartContentProps {
 }
 
 export function CartContent({ whatsappNumber }: CartContentProps) {
+  // Hidratação do carrinho
+  const [mounted, setMounted] = useState(false)
+  
   // Estado do carrinho
   const { items, removeItem, updateQuantity, clearCart, getTotal } = useCart()
   
@@ -38,6 +41,12 @@ export function CartContent({ whatsappNumber }: CartContentProps) {
   
   // Estado de carregamento
   const [isLoading, setIsLoading] = useState(false)
+
+  // Hidratação - previne mismatch SSR/Client
+  useEffect(() => {
+    useCart.persist.rehydrate()
+    setMounted(true)
+  }, [])
 
   /**
    * Finaliza o pedido abrindo o WhatsApp.
@@ -70,7 +79,17 @@ export function CartContent({ whatsappNumber }: CartContentProps) {
     setIsLoading(false)
   }
 
-  // Carrinho vazio
+  // Carrinho vazio ou carregando
+  if (!mounted) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <div className="h-16 w-16 animate-pulse rounded-full bg-muted" />
+        <div className="mt-6 h-6 w-48 animate-pulse rounded bg-muted" />
+        <div className="mt-2 h-4 w-64 animate-pulse rounded bg-muted" />
+      </div>
+    )
+  }
+  
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16">

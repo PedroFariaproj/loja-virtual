@@ -1,22 +1,17 @@
 /**
  * =============================================================================
- * ESTILOS GLOBAIS - TEMA PREMIUM APPLE
+ * ESTILOS GLOBAIS - TEMA APPLE (CLARO E ESCURO)
  * =============================================================================
  * 
- * Este arquivo define o tema visual da loja inspirado na Apple.
- * Cores principais: Preto, Cinza Escuro, Branco, Azul Apple (#0071E3)
+ * Visual premium inspirado na Apple com suporte a tema claro e escuro.
+ * O tema escuro é o padrão, mas o usuário pode alternar.
  * 
- * COMO ALTERAR AS CORES:
- * 1. Encontre a seção :root (tema claro) ou .dark (tema escuro)
- * 2. Altere os valores das variáveis CSS
- * 3. As cores usam o formato OKLCH para melhor fidelidade
- * 
- * CONVERSÃO HEX PARA OKLCH:
- * #0071E3 (Azul Apple) = oklch(0.55 0.22 250)
- * #000000 (Preto) = oklch(0 0 0)
- * #111111 (Cinza escuro) = oklch(0.145 0 0)
- * #1f1f1f (Cinza médio) = oklch(0.2 0 0)
- * #ffffff (Branco) = oklch(1 0 0)
+ * PARA ALTERAR AS CORES:
+ * - Modifique as variáveis abaixo (oklch ou hsl)
+ * - --background: cor de fundo principal
+ * - --foreground: cor do texto principal
+ * - --primary: cor de destaque (azul Apple)
+ * - --card: cor dos cards
  * =============================================================================
  */
 
@@ -26,98 +21,140 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   TEMA ESCURO (PADRÃO) - Inspirado na Apple
-   O site usa tema escuro como padrão para visual premium
+   TEMA CLARO APPLE
+   Fundo branco, texto escuro, azul Apple como destaque
    ============================================================================= */
 :root {
-  /* Fundo principal - Preto puro (#000000) */
-  --background: oklch(0 0 0);
-  /* Texto principal - Branco (#ffffff) */
-  --foreground: oklch(0.985 0 0);
+  /* Fundo principal - Branco puro */
+  --background: oklch(1 0 0);
+  /* Texto principal - Preto suave */
+  --foreground: oklch(0.15 0 0);
   
-  /* Cards - Cinza escuro (#111111) */
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  /* Cards - Branco com leve cinza */
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.15 0 0);
   
-  /* Popovers - Cinza escuro */
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  /* Popovers e dropdowns */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
   
   /* Cor primária - Azul Apple (#0071E3) */
-  --primary: oklch(0.55 0.22 250);
+  --primary: oklch(0.55 0.2 250);
   --primary-foreground: oklch(1 0 0);
   
-  /* Cor secundária - Cinza médio (#1f1f1f) */
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  /* Cor secundária - Cinza claro */
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.25 0 0);
   
-  /* Elementos mutados - Cinza médio */
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.65 0 0);
+  /* Elementos mutados - Cinza */
+  --muted: oklch(0.93 0 0);
+  --muted-foreground: oklch(0.45 0 0);
   
-  /* Acentos - Cinza escuro */
-  --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Acentos */
+  --accent: oklch(0.95 0 0);
+  --accent-foreground: oklch(0.25 0 0);
   
   /* Destrutivo - Vermelho */
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(1 0 0);
   
-  /* Bordas e inputs - Cinza escuro */
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.2 0 0);
-  --ring: oklch(0.55 0.22 250);
+  /* Bordas - Cinza muito claro */
+  --border: oklch(0.88 0 0);
+  /* Inputs - Branco com borda */
+  --input: oklch(0.95 0 0);
+  /* Ring de foco - Azul Apple */
+  --ring: oklch(0.55 0.2 250);
   
   /* Gráficos */
-  --chart-1: oklch(0.55 0.22 250);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.55 0.2 250);
+  --chart-2: oklch(0.6 0.15 180);
+  --chart-3: oklch(0.5 0.12 280);
+  --chart-4: oklch(0.75 0.15 85);
+  --chart-5: oklch(0.65 0.18 35);
   
-  /* Raio de borda padrão */
+  /* Raio de borda - Arredondamento elegante */
   --radius: 0.75rem;
   
-  /* Sidebar - Cinza escuro */
-  --sidebar: oklch(0.1 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.22 250);
+  /* Sidebar - Cinza claro */
+  --sidebar: oklch(0.97 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.55 0.2 250);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.55 0.22 250);
+  --sidebar-accent: oklch(0.93 0 0);
+  --sidebar-accent-foreground: oklch(0.25 0 0);
+  --sidebar-border: oklch(0.88 0 0);
+  --sidebar-ring: oklch(0.55 0.2 250);
 }
 
-/* Tema claro (opcional, caso queira adicionar toggle de tema) */
-.light {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 250);
+/* =============================================================================
+   TEMA ESCURO APPLE
+   Fundo preto profundo, texto branco, azul Apple como destaque
+   ============================================================================= */
+.dark {
+  /* Fundo principal - Preto profundo */
+  --background: oklch(0.07 0 0);
+  /* Texto principal - Branco */
+  --foreground: oklch(0.98 0 0);
+  
+  /* Cards - Cinza escuro suave */
+  --card: oklch(0.12 0.005 280);
+  --card-foreground: oklch(0.98 0 0);
+  
+  /* Popovers e dropdowns */
+  --popover: oklch(0.14 0.005 280);
+  --popover-foreground: oklch(0.98 0 0);
+  
+  /* Cor primária - Azul Apple (#0071E3) */
+  --primary: oklch(0.58 0.18 250);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  
+  /* Cor secundária - Cinza escuro */
+  --secondary: oklch(0.18 0.005 280);
+  --secondary-foreground: oklch(0.92 0 0);
+  
+  /* Elementos mutados - Cinza médio */
+  --muted: oklch(0.2 0.005 280);
+  --muted-foreground: oklch(0.65 0 0);
+  
+  /* Acentos */
+  --accent: oklch(0.18 0.005 280);
+  --accent-foreground: oklch(0.92 0 0);
+  
+  /* Destrutivo - Vermelho suave */
+  --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.55 0.22 250);
+  
+  /* Bordas - Cinza muito sutil */
+  --border: oklch(0.22 0.005 280);
+  /* Inputs - Fundo escuro com borda sutil */
+  --input: oklch(0.15 0.005 280);
+  /* Ring de foco - Azul Apple */
+  --ring: oklch(0.58 0.18 250);
+  
+  /* Gráficos */
+  --chart-1: oklch(0.58 0.18 250);
+  --chart-2: oklch(0.6 0.15 180);
+  --chart-3: oklch(0.5 0.12 280);
+  --chart-4: oklch(0.75 0.15 85);
+  --chart-5: oklch(0.65 0.18 35);
+  
+  /* Sidebar - Preto mais escuro */
+  --sidebar: oklch(0.05 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.58 0.18 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.15 0.005 280);
+  --sidebar-accent-foreground: oklch(0.92 0 0);
+  --sidebar-border: oklch(0.18 0.005 280);
+  --sidebar-ring: oklch(0.58 0.18 250);
 }
 
 /* =============================================================================
    CONFIGURAÇÃO DO TAILWIND
    ============================================================================= */
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --font-sans: 'Geist', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -161,30 +198,47 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 }
 
 /* =============================================================================
-   ANIMAÇÕES PERSONALIZADAS
+   ANIMAÇÕES SUAVES - Apple Style
    ============================================================================= */
 @layer utilities {
-  /* Animação de fade in suave */
+  /* Fade in elegante */
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
   }
   
-  /* Animação de slide up */
+  /* Slide up suave */
   .animate-slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+    animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
   }
   
-  /* Efeito de brilho em hover */
+  /* Efeito de brilho sutil em hover - Azul Apple */
   .hover-glow {
-    transition: box-shadow 0.3s ease;
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 113, 227, 0.3);
+    box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
+  }
+
+  /* Transição suave para cards - Tema claro */
+  .card-hover {
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card-hover:hover {
+    background: oklch(0.95 0 0);
+    border-color: oklch(0.82 0 0);
+  }
+  
+  /* Transição suave para cards - Tema escuro */
+  .dark .card-hover:hover {
+    background: oklch(0.15 0.005 280);
+    border-color: oklch(0.28 0.005 280);
   }
 }
 
@@ -209,7 +263,7 @@
 }
 
 /* =============================================================================
-   ESTILOS DE SCROLLBAR PERSONALIZADOS
+   SCROLLBAR ELEGANTE - Estilo Apple
    ============================================================================= */
 ::-webkit-scrollbar {
   width: 8px;
@@ -217,14 +271,163 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: oklch(0.1 0 0);
+  background: oklch(0.95 0 0);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.3 0 0);
+  background: oklch(0.75 0 0);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.4 0 0);
+  background: oklch(0.65 0 0);
+}
+
+/* Scrollbar tema escuro */
+.dark ::-webkit-scrollbar-track {
+  background: oklch(0.1 0 0);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: oklch(0.25 0 0);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.35 0 0);
+}
+
+/* =============================================================================
+   ESTILOS APPLE - Detalhes extras
+   ============================================================================= */
+
+/* Seleção de texto com cor Apple */
+::selection {
+  background: oklch(0.58 0.18 250 / 0.3);
+  color: oklch(1 0 0);
+}
+
+/* Links com transição suave */
+a {
+  transition: color 0.2s ease;
+}
+
+/* Imagens com loading suave */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Focus ring estilo Apple - Azul */
+:focus-visible {
+  outline: 2px solid oklch(0.58 0.18 250);
+  outline-offset: 2px;
+}
+
+/* Botões com transições suaves */
+button {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Inputs estilo Apple - Fundo escuro, borda sutil, foco azul */
+input, textarea, select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: oklch(0.58 0.18 250) !important;
+  box-shadow: 0 0 0 3px oklch(0.58 0.18 250 / 0.15);
+}
+
+/* =============================================================================
+   RESPONSIVIDADE MOBILE - Otimizações para telas pequenas
+   ============================================================================= */
+
+/* Ajustes de tamanho de fonte para mobile */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+  
+  /* Títulos menores no mobile */
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Containers com padding adequado */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Botões touch-friendly */
+  button, a[role="button"], .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Inputs maiores no mobile */
+  input, textarea, select {
+    font-size: 16px !important; /* Previne zoom no iOS */
+    min-height: 44px;
+  }
+  
+  /* Cards com menos padding */
+  .card {
+    padding: 1rem;
+  }
+  
+  /* Grid adaptativo */
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15.5px;
+  }
+}
+
+/* Previne overflow horizontal */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Texto responsivo com clamp */
+.text-responsive-hero {
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.text-responsive-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.text-responsive-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+/* Word wrap para textos longos */
+p, h1, h2, h3, h4, h5, h6, span, a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Imagens responsivas */
+img {
+  max-width: 100%;
+  height: auto;
 }

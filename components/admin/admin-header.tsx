@@ -26,6 +26,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 
@@ -60,14 +61,19 @@ export function AdminHeader({ userName }: AdminHeaderProps) {
         <span className="font-bold">Admin</span>
       </div>
 
-      {/* Menu Mobile */}
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Menu</span>
-          </Button>
-        </SheetTrigger>
+      {/* Ações */}
+      <div className="flex items-center gap-2">
+        {/* Botão de Tema Claro/Escuro */}
+        <ThemeToggle />
+
+        {/* Menu Mobile */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Menu</span>
+            </Button>
+          </SheetTrigger>
 
         <SheetContent side="right" className="w-[280px] p-0">
           <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
@@ -126,6 +132,7 @@ export function AdminHeader({ userName }: AdminHeaderProps) {
           </div>
         </SheetContent>
       </Sheet>
+      </div>
     </header>
   )
 }
