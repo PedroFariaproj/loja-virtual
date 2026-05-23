@@ -18,6 +18,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { useCart } from '@/hooks/use-cart'
 import { useStoreSettings } from '@/hooks/use-store-settings'
 
@@ -100,6 +101,9 @@ export function Header() {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
+
+          {/* Botão de Alternância de Tema (Claro/Escuro) */}
+          <ThemeToggle />
 
           {/* Menu Mobile */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>

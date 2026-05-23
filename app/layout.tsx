@@ -16,6 +16,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from '@/components/theme-provider'
 import { storeConfig } from '@/lib/store-config'
 import './globals.css'
 
@@ -101,10 +102,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable} bg-background`}>
-      <body className="font-sans antialiased min-h-screen">
-        {/* Conteúdo principal das páginas */}
-        {children}
+    <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased min-h-screen bg-background">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Conteúdo principal das páginas */}
+          {children}
+        </ThemeProvider>
         
         {/* Analytics do Vercel (apenas em produção) */}
         {process.env.NODE_ENV === 'production' && <Analytics />}
